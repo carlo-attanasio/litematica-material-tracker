@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Litematica Material Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="header-top">
+            <h1>Litematica Material Tracker</h1>
+            <div class="file-controls">
+                <select id="fileSelect" onchange="loadFile()"></select>
+                
+                <button class="add-btn icon-btn" id="changeDirBtn" title="Set folder path">
+                    <img src="{{ url_for('static', filename='Icons/folder.svg') }}" alt="Folder">
+                </button>
+                
+                <button class="add-btn icon-btn" id="renameFileBtn" title="Rename file">
+                    <img src="{{ url_for('static', filename='Icons/pencil.svg') }}" alt="Rename">
+                </button>
+                
+                <button class="add-btn icon-btn" id="addFileBtn" title="Load custom file">
+                    <img src="{{ url_for('static', filename='Icons/plus.svg') }}" alt="Add">
+                </button>
+                
+                <input type="file" id="fileUpload" accept=".txt" style="display: none;">
+            </div>
+        </div>
+    </div>
+    <div class="global-progress">
+        <div class="global-text-wrapper">
+            <h2>Overall Build Progress</h2>
+            <span class="global-percent"><span id="globalPercentText">0.0</span>%</span>
+        </div>
+        <div class="progress-bar-container global-bar">
+            <div class="progress-bar" id="globalProgressBar"></div>
+        </div>
+    </div>
+    <div class="filters">
+        <button class="filter-btn active" onclick="setFilter('all', event)">All</button>
+        <button class="filter-btn" onclick="setFilter('not-started', event)">Yet to Start</button>
+        <button class="filter-btn" onclick="setFilter('in-progress', event)">In Progress</button>
+        <button class="filter-btn" onclick="setFilter('completed', event)">Completed</button>
+    </div>
+    <div id="materialList"></div>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
